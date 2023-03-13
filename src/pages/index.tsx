@@ -2,7 +2,9 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Sidebar from "../components/Sidebar";
 import Fullscreen from "../components/Fullsceen";
+import requests from "./api/request";
 
+console.log(requests);
 const Home: NextPage = () => {
   return (
     <>
