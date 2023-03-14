@@ -4,7 +4,7 @@ import Sidebar from "../components/Sidebar";
 import Fullscreen from "../components/Fullsceen";
 import requests from "./api/request";
 
-console.log(requests);
+console.log(requests.fetchTrending.length);
 const Home: NextPage = () => {
   return (
     <>
