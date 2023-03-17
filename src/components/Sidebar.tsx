@@ -35,7 +35,6 @@ export default function Sidebar() {
             height={30}
           />
         ))}
-        <h1 className="text-sm text-white">{movies.title}</h1>
       </div>
     </section>
   );
