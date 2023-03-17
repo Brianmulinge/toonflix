@@ -9,6 +9,9 @@
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  images: {
+    domains: ["image.tmdb.org"],
+  },
 
   /**
    * If you have the "experimental: { appDir: true }" setting enabled, then you
