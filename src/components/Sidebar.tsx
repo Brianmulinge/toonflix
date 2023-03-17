@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import pic from "../assets/pic.png";
 import requests from "src/pages/api/request";
 import axios from "../pages/api/axios";
 
@@ -16,10 +15,11 @@ export default function Sidebar() {
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchAnimation);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
       setMovies(request.data.results);
       return request;
     }
-    fetchData();
+    void fetchData();
   }, []);
 
   return (
