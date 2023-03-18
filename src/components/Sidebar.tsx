@@ -1,41 +1,34 @@
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import requests from "src/pages/api/request";
-import axios from "../pages/api/axios";
 
 type MovieType = {
   id: number;
   title: string;
   backdrop_path: string;
+  overview: string;
+  name: string;
+  original_name: string;
 };
 
-export default function Sidebar() {
-  const [movies, setMovies] = useState<MovieType[]>([]);
+type SidebarProps = {
+  movies: MovieType[];
+  onMovieselect: (movie: MovieType) => void; // this is the function that will be passed in from index.tsx
+};
 
-  useEffect(() => {
-    async function fetchData() {
-      const request = await axios.get(requests.fetchAnimation);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-      setMovies(request.data.results);
-      return request;
-    }
-    void fetchData();
-  }, []);
-
+export default function Sidebar({ movies, onMovieselect }: SidebarProps) {
   return (
-    <section className="flex h-full w-full space-x-2 overflow-auto p-2 scrollbar-hide">
-      <div className="flex space-x-2">
-        {movies.map((movie) => (
-          <Image
-            className="h-52 w-80 rounded-lg"
-            key={movie.id}
-            alt="movie"
-            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-            width={20}
-            height={30}
-          />
-        ))}
-      </div>
+    <section className="flex h-full w-full space-x-4 overflow-auto p-2">
+      {movies.map((movie) => (
+        <Image
+          onClick={() => onMovieselect(movie)}
+          className="h-52 w-80 rounded-lg"
+          key={movie.id}
+          alt={movie.title || movie.name || movie.original_name}
+          priority={true}
+          src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
+          width={200}
+          height={300}
+        />
+      ))}
     </section>
   );
 }
