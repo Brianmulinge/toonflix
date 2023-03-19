@@ -5,7 +5,6 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import requests from "../pages/api/request";
 import axios from "../pages/api/axios";
-import Video from "src/components/Video";
 
 type HomeProps = {
   id: number;
@@ -96,7 +95,6 @@ const Home: NextPage = () => {
               </>
             )}
           </div>
-
           <div className="">
             <Sidebar movies={movies} onMovieselect={handleMovieselect} />
           </div>
