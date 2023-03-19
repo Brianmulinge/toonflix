@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import requests from "../pages/api/request";
 import axios from "../pages/api/axios";
+import Video from "src/components/Video";
 
 type HomeProps = {
   id: number;
@@ -59,6 +60,7 @@ const Home: NextPage = () => {
         backgroundSize: "cover",
         backgroundPosition: "center center",
       }}
+      className="h-screen w-screen"
     >
       <Head>
         <title>Toonflix</title>
@@ -66,16 +68,16 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="h-screen w-full">
-        <section className="h-screen w-screen p-4">
+        <section className="flex h-screen w-screen flex-col justify-between">
           <Image
             priority={true}
             src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_1-5bdc75aaebeb75dc7ae79426ddd9be3b2be1e342510f8202baf6bffa71d7f5c4.svg"
             width={20}
             height={20}
             alt="tmdb_logo"
-            className="h-12 w-12"
+            className="m-4 h-12 w-12"
           />
-          <div className="absolute top-28 mr-4 space-y-4 p-2 backdrop-blur-sm md:top-44">
+          <div className="top-28 mr-4 space-y-4 p-6 backdrop-blur-sm md:top-44">
             {selectedMovie && (
               <>
                 <h1 className="text-4xl font-semibold">
@@ -94,10 +96,11 @@ const Home: NextPage = () => {
               </>
             )}
           </div>
+
+          <div className="">
+            <Sidebar movies={movies} onMovieselect={handleMovieselect} />
+          </div>
         </section>
-        <div className="absolute bottom-0">
-          <Sidebar movies={movies} onMovieselect={handleMovieselect} />
-        </div>
       </main>
     </div>
   );
