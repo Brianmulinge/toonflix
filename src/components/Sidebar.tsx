@@ -7,6 +7,7 @@ type MovieType = {
   overview: string;
   name: string;
   original_name: string;
+  movieId: number;
 };
 
 type SidebarProps = {
@@ -16,7 +17,7 @@ type SidebarProps = {
 
 export default function Sidebar({ movies, onMovieselect }: SidebarProps) {
   return (
-    <section className="flex h-full w-full space-x-4 overflow-auto p-2">
+    <section className="flex h-full w-full space-x-4 overflow-auto p-2 scrollbar-hide">
       {movies.map((movie) => (
         <Image
           onClick={() => onMovieselect(movie)}
