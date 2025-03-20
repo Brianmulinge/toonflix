@@ -1,12 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
 const API_KEY = process.env.TMDB_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
+type Props = {
+  params: Promise<{
+    id: string
+  }>
+}
+
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  request: Request, 
+  props: Props
 ) {
+  const params = await props.params;
   const id = params.id;
   
   try {
